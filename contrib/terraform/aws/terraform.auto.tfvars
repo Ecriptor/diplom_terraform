@@ -5,7 +5,7 @@ AWS_SECRET_ACCESS_KEY = ""
 #EC2 SSH Key Name
 AWS_SSH_KEY_NAME = "diplom-key"
 #AWS Region
-AWS_DEFAULT_REGION = "us-east-2"
+AWS_DEFAULT_REGION = "eu-central-1"
 
 
 #Global Vars

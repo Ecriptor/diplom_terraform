@@ -1,7 +1,7 @@
 # Kubernetes on AWS with Terraform
 
 ## Overview
-#
+
 This project will create:
 
 - VPC with Public and Private Subnets in # Availability Zones
