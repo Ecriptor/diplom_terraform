@@ -19,7 +19,7 @@ resource "aws_security_group" "inbound_http" {
 }
 
 resource "aws_elb" "ingresses_http_elb" {
-  name               = "ingresses-http-elb-${var.aws_cluster_name}"
+  name               = "ingresses-http-${var.aws_cluster_name}"
   subnets = module.aws-vpc.aws_subnet_ids_public
   security_groups = [aws_security_group.inbound_http.id]
 
