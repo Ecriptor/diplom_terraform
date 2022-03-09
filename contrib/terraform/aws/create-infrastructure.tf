@@ -77,9 +77,8 @@ resource "aws_instance" "bastion-server" {
 resource "aws_instance" "k8s-master" {
   ami           = data.aws_ami.distro.id
   instance_type = var.aws_kube_master_size
-
   count = var.aws_kube_master_num
-
+  associate_public_ip_address = true
   availability_zone = element(slice(data.aws_availability_zones.available.names, 0, length(var.aws_cidr_subnets_public) <= length(data.aws_availability_zones.available.names) ? length(var.aws_cidr_subnets_public) : length(data.aws_availability_zones.available.names)), count.index)
   subnet_id         = element(module.aws-vpc.aws_subnet_ids_private, count.index)
 

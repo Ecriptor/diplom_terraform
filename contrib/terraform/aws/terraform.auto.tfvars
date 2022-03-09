@@ -5,11 +5,11 @@ AWS_SECRET_ACCESS_KEY = ""
 #EC2 SSH Key Name
 AWS_SSH_KEY_NAME = "diplom-key"
 #AWS Region
-AWS_DEFAULT_REGION = "eu-central-1"
+AWS_DEFAULT_REGION = "eu-west-3"
 
 
 #Global Vars
-aws_cluster_name = "NetologyDiplom"
+aws_cluster_name = "diplomNetology"
 
 #VPC Vars
 aws_vpc_cidr_block       = "10.250.192.0/18"
