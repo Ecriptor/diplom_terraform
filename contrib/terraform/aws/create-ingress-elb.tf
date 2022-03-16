@@ -15,6 +15,7 @@ resource "aws_security_group" "inbound_http" {
     protocol = "tcp"
     to_port = 30000
     cidr_blocks = ["0.0.0.0/0"]
+    description = "Incoming HTTP connection for grafana"
   }
 
   ingress {
@@ -22,6 +23,7 @@ resource "aws_security_group" "inbound_http" {
     protocol = "tcp"
     to_port = 30001
     cidr_blocks = ["0.0.0.0/0"]
+    description = "Incoming HTTP connection for APP"
   }
 
   egress {
@@ -38,9 +40,16 @@ resource "aws_elb" "ingresses_http_elb" {
   security_groups = [aws_security_group.inbound_http.id]
 
   listener {
-    instance_port     = 80
+    instance_port     = 30001
     instance_protocol = "http"
-    lb_port           = 80
+    lb_port           = 30001
+    lb_protocol       = "http"
+  }
+
+  listener {
+    instance_port     = 30000
+    instance_protocol = "http"
+    lb_port           = 30000
     lb_protocol       = "http"
   }
 
@@ -48,7 +57,7 @@ resource "aws_elb" "ingresses_http_elb" {
     healthy_threshold   = 2
     unhealthy_threshold = 10
     timeout             = 3
-    target              = "TCP:80"
+    target              = "TCP:30001"
     interval            = 15
   }
 
