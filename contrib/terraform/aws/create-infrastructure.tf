@@ -107,7 +107,7 @@ resource "aws_elb_attachment" "attach_master_nodes" {
 resource "aws_instance" "k8s-etcd" {
   ami           = data.aws_ami.distro.id
   instance_type = var.aws_etcd_size
-
+  associate_public_ip_address = true
   count = var.aws_etcd_num
 
   availability_zone = element(slice(data.aws_availability_zones.available.names, 0, length(var.aws_cidr_subnets_public) <= length(data.aws_availability_zones.available.names) ? length(var.aws_cidr_subnets_public) : length(data.aws_availability_zones.available.names)), count.index)
@@ -131,7 +131,7 @@ resource "aws_instance" "k8s-etcd" {
 resource "aws_instance" "k8s-worker" {
   ami           = data.aws_ami.distro.id
   instance_type = var.aws_kube_worker_size
-
+  associate_public_ip_address = true
   count = var.aws_kube_worker_num
 
   availability_zone = element(slice(data.aws_availability_zones.available.names, 0, length(var.aws_cidr_subnets_public) <= length(data.aws_availability_zones.available.names) ? length(var.aws_cidr_subnets_public) : length(data.aws_availability_zones.available.names)), count.index)
